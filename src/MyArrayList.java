@@ -19,6 +19,7 @@ public class MyArrayList<T> implements MyList<T>{
 
     /**
      * Добавление элемента в конец списка
+     *
      * @param element - добавляемый элемент
      */
     @Override
@@ -114,5 +115,4 @@ public class MyArrayList<T> implements MyList<T>{
     public String toString() {
         return Arrays.toString(Arrays.copyOf(list, size));
     }
-
 }

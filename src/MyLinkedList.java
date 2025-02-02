@@ -33,6 +33,7 @@ public class MyLinkedList<T extends Comparable<T>> implements MyList<T> {
 
     /**
      * Добавление элемента в конец списка
+     *
      * @param element - добавляемый элемент
      */
     @Override
@@ -96,6 +97,7 @@ public class MyLinkedList<T extends Comparable<T>> implements MyList<T> {
 
     /**
      * Удаление элемента по индексу
+     *
      * @param index - индекс удаляемого элемента
      */
     @Override
