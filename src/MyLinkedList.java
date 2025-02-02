@@ -1,18 +1,16 @@
-import java.util.Arrays;
-
 /**
  * Связанный динамический массив LinkedList
  */
-public class MyLinkedList<T> implements MyList<T> {
+public class MyLinkedList<T extends Comparable<T>> implements MyList<T> {
     /**
      * Внутренний параметризированный класс из элементов, которого состоит список
      */
     private static class Node<T> {
         private T element;
-        private MyLinkedList.Node<T> nextNode;
-        private MyLinkedList.Node<T> prevNode;
+        private Node<T> nextNode;
+        private Node<T> prevNode;
 
-        //Конструктор создания элемента с ссылками на следующий и предыдущий элемент
+        //Конструктор создания элемента с сылками на следующий и предыдущий элемент
         public Node(T element) {
             this.element = element;
             this.nextNode = null;
@@ -59,19 +57,18 @@ public class MyLinkedList<T> implements MyList<T> {
     @Override
     public void add(int index, T element) {
         checkIndex(index); //проверка индекса
-
         //Если индекс совпадает с количеством элементов в списке, то вызываем метод вставки в конец
         if(index == size) {
             add(element);
             return;
-        };
+        }
 
         Node<T> newNode = new Node<>(element);
         if(index == 0) {
             newNode.nextNode = firstNode;
             if(firstNode != null) {
                 firstNode.prevNode = newNode;
-            };
+            }
             firstNode = newNode;
         } else {
             Node<T> current = getNode(index);
@@ -79,9 +76,9 @@ public class MyLinkedList<T> implements MyList<T> {
             newNode.prevNode = current.prevNode;
             if(current.prevNode != null) {
                 current.prevNode.nextNode = newNode;
-            };
+            }
             current.prevNode = newNode;
-        };
+        }
         size++;
     }
 
@@ -134,7 +131,7 @@ public class MyLinkedList<T> implements MyList<T> {
             current.nextNode = null;
             current.element = null;
             current = next;
-        };
+        }
         lastNode = null;
         firstNode = null;
         size = 0;
@@ -147,7 +144,7 @@ public class MyLinkedList<T> implements MyList<T> {
     public void sort() {
         if(size <= 1) {
             return;
-        };
+        }
         boolean flag;
         do {
             flag = false;
@@ -158,7 +155,7 @@ public class MyLinkedList<T> implements MyList<T> {
                     current.element = current.nextNode.element;
                     current.nextNode.element = y;
                     flag =true;
-                };
+                }
                 current = current.nextNode;
             }
         } while (flag);
@@ -183,7 +180,7 @@ public class MyLinkedList<T> implements MyList<T> {
         Node<T> current = firstNode;
         for (int i = 0; i < index; i++) {
             current = current.nextNode;
-        };
+        }
         return current;
     }
 
@@ -197,7 +194,7 @@ public class MyLinkedList<T> implements MyList<T> {
                 sb.append(", ");
             }
             current = current.nextNode;
-        };
+        }
         sb.append("]");
         return sb.toString();
     }
